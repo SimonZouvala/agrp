@@ -27,15 +27,12 @@ public class OpenAiClientImpl implements OpenAiClient {
                 Map.of("role", "user", "content", message)
         );
 
-        log.info("Generating daily suggestions for messages: {}", messages);
-        log.info("model: {}", groqAiProperties.getModel());
-
         Map<String, Object> payload = Map.of(
                 "model", groqAiProperties.getModel(),
                 "messages", messages
         );
 
-        String json = null;
+        String json;
         try {
             json = objectMapper.writeValueAsString(payload);
         } catch (JsonProcessingException e) {
